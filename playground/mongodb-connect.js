@@ -1,4 +1,10 @@
-const MongoClient = require('mongodb').MongoClient;
+// const MongoClient = require('mongodb').MongoClient;
+
+// es 6 destructuring
+const {MongoClient, ObjectId} = require('mongodb');
+
+// var obj = new ObjectId();
+// console.log(obj);
 
 MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
   if (err)  {
