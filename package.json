@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-todo-api",
+  "version": "1.0.0",
+  "description": "todo api built in nodejs, rest and mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codejayant/nodejs-todo-api.git"
+  },
+  "author": "jayant sarkar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codejayant/nodejs-todo-api/issues"
+  },
+  "homepage": "https://github.com/codejayant/nodejs-todo-api#readme",
+  "dependencies": {
+    "mongodb": "^2.2.33"
+  }
+}
