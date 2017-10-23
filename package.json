@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/codejayant/nodejs-todo-api#readme",
   "dependencies": {
-    "mongodb": "^2.2.33"
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.12.4"
   }
 }
