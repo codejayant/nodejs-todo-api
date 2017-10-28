@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
+var mongoose = require('mongoose');
 
-const User = mongoose.model('Users', {
+var User = mongoose.model('Users', {
   email: {
     type: String,
     required: true,
