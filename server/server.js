@@ -1,18 +1,19 @@
-var express = require('express');
+const express = require('express');
 
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+const {ObjectID} = require('mongodb');
 
-var { mongoose } = require('./db/mongoose');
-var { Todo } = require('./models/todo');
-var { User } = require('./models/user');
+const { mongoose } = require('./db/mongoose');
+const { Todo } = require('./models/todo');
+const { User } = require('./models/user');
 
 
-var app = express();
+const app = express();
 
 app.use(bodyParser.json());
 
 app.post('/todos', (request, response) => {
-  var todo = new Todo({
+  let todo = new Todo({
     text: request.body.text
   });
 
@@ -29,6 +30,33 @@ app.get('/todos', (req, res) => {
   }, (e) => {
     res.status(400).send(e);
   });
+});
+
+// GET /todos/12345
+app.get('/todos/:id', (req, res) => {
+  // res.send(req.params);
+
+  let id = req.params.id;
+  console.log('id : ', id);
+
+  if (!ObjectID.isValid(id))  {
+    return res.status(404).send();
+  }
+
+  Todo.findById(id).then((todo) => {
+
+    if (!todo)  {
+      console.log("hello");
+      return res.status(404).send();
+    }
+    console.log("world");
+    return res.send(JSON.stringify(todo, undefined, 2));
+
+  }).catch((e) => {
+    console.log("crappy");
+    return res.status(400).send();
+  });
+
 });
 
 app.listen(3000, () => {
