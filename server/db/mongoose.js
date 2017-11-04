@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-// var promise = require('bluebird');
+const mongoose = require('mongoose');
+// const promise = require('bluebird');
 
 // mongoose.Promise = promise;
 mongoose.Promise = global.Promise;

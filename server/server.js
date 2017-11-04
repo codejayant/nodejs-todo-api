@@ -1,5 +1,4 @@
 const express = require('express');
-
 const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
 
@@ -38,7 +37,6 @@ app.get('/todos/:id', (req, res) => {
   // res.send(req.params);
 
   let id = req.params.id;
-  console.log('id : ', id);
 
   if (!ObjectID.isValid(id))  {
     return res.status(404).send();
@@ -49,7 +47,6 @@ app.get('/todos/:id', (req, res) => {
     if (!todo)  {
       return res.status(404).send();
     }
-    // console.log('todo : ', todo);
     return res.send({todo});
 
   }).catch((e) => {
