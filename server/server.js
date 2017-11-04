@@ -34,6 +34,7 @@ app.get('/todos', (req, res) => {
 
 // GET /todos/12345
 app.get('/todos/:id', (req, res) => {
+  // to extract the parameter
   // res.send(req.params);
 
   let id = req.params.id;
@@ -46,14 +47,12 @@ app.get('/todos/:id', (req, res) => {
   Todo.findById(id).then((todo) => {
 
     if (!todo)  {
-      console.log("hello");
       return res.status(404).send();
     }
-    console.log("world");
-    return res.send(JSON.stringify(todo, undefined, 2));
+    // console.log('todo : ', todo);
+    return res.send({todo});
 
   }).catch((e) => {
-    console.log("crappy");
     return res.status(400).send();
   });
 
