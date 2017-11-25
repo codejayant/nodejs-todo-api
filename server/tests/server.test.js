@@ -186,6 +186,7 @@ describe('PATCH /todos/:id', () => {
 
 describe('GET /users/me', () => {
   it('should return user if authenticated', (done) => {
+    console.log("x-auth : ", users[0].tokens[0].token);
     request(app)
       .get('/users/me')
       .set('x-auth', users[0].tokens[0].token)
@@ -260,11 +261,6 @@ describe('POST /users', () => {
 
 describe('POST /users/login', () => {
   it('should login user and return auth token', (done) => {
-    let email = users[1].email;
-    let password = users[1].password;
-
-    console.log(`email : ${email} \n password : ${password}`);
-
     request(app)
       .post('/users/login')
       .send({
@@ -276,21 +272,42 @@ describe('POST /users/login', () => {
         expect(res.headers['x-auth']).toBeDefined();
       })
       .end((err, res) => {
-        if (err)  {
-         return done(err);
+        if (err) {
+          return done(err);
         }
 
         User.findById(users[1]._id).then((user) => {
-          expect(user.tokens[0]).toInclude({
-            access: 'auth',
-            token: res.headers['x-auth']
-          });
+          // expect(user.tokens[0]).toInclude({
+          //   access: 'auth',
+          //   token: res.headers['x-auth']
+          // });
+          expect(user.tokens[0].access).toBe('auth');
+          expect(user.tokens[0].token).toBe(res.headers['x-auth']);
           done();
         }).catch((err) => done(err));
       });
   });
 
   it('should reject invalid login', (done) => {
+    request(app)
+      .post('/users/login')
+      .send({
+        email: users[1].email,
+        password: users[1].password + '1'
+      })
+      .expect(400)
+      .expect((res) => {
+        expect(res.headers['x-auth']).not.toBeDefined();
+      })
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
 
+        User.findById(users[1]._id).then((user) => {
+          expect(user.tokens.length).toBe(0);
+          done();
+        }).catch((e) => done(e));
+      });
   });
-})
+});
