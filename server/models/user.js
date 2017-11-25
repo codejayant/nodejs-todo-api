@@ -64,21 +64,31 @@ UserSchema.methods.generateAuthToken = function() {
   });
 };
 
-UserSchema.statics.findByToken = function(token) {
+UserSchema.methods.removeToken = function (token) {
+  let user = this;
+
+  return user.update({
+    $pull: {
+      tokens: {token}
+    }
+  });
+};
+
+UserSchema.statics.findByToken = function (token) {
   let User = this;
   let decoded;
 
   try {
     decoded = jwt.verify(token, 'abc123');
-    console.debug('decoded : ', decoded);
-    console.debug(`decoded id : ${decoded._id}`);
+    // console.log('decoded : ', decoded);
+    // console.log(`decoded id : ${decoded._id}`);
   } catch(e)  {
     // return new Promise((resolve, reject) => {
     //   reject();
     // });
     return Promise.reject();
   }
-  console.debug('token', token);
+
   return User.findOne({
     // _id: decoded._id,
     '_id': decoded._id,

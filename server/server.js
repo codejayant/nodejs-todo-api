@@ -122,7 +122,7 @@ app.post('/users', (req, res)=> {
     return user.generateAuthToken();
     // res.send(user);
   }).then((token) => {
-    console.log('token : ', token);
+    // console.log('token : ', token);
     res.header('x-auth', token).send(user);
   }).catch((err) => {
     console.error('signup error : ', err);
@@ -141,7 +141,7 @@ app.post('/users/login', (req, res) => {
 
   User.findByCredentials(body.email, body.password).then((user) => {
     return user.generateAuthToken().then((token) => {
-      console.log('token : ', token);
+      // console.log('token : ', token);
       res.header('x-auth', token).send(user);
     });
   }).catch((err) => {
@@ -151,6 +151,13 @@ app.post('/users/login', (req, res) => {
 
 });
 
+app.delete('/users/me/token', authenticate, (req, res) => {
+  req.user.removeToken(req.token).then(() => {
+    res.status(200).send();
+  }, () => {
+    res.status(400).send();
+  })
+});
 
 app.listen(port, () => {
   console.log('Started on port ', port);
