@@ -1,0 +1,169 @@
+{
+	"variables": [],
+	"info": {
+		"name": "nodejs TODO API",
+		"_postman_id": "eeb1aa41-fe22-625b-7320-963536fa0015",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create /todo",
+			"request": {
+				"url": "{{url}}/todos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "x-auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTE5ZmIzN2YwYjhlODgzOTIyODY3YTMiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTExNjUyMTUxfQ.GMzMVxs-r6259avjC2MCWm1jteP3Atgizpe1WpbXNQM",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"learn js\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET All /todos",
+			"request": {
+				"url": "{{url}}/todos",
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTFhMmZlMmQ2ZDg0NDAwMTQ0MTU2YjUiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTExNjY1NjM0fQ.c03H9VWXAhvb_12hwCUqWAhT8SuyvLvOZVJQBNqG17E",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET todos/:id",
+			"request": {
+				"url": "{{url}}/todos/59fe1f092c64e70012f0b38c",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /todos/:id",
+			"request": {
+				"url": "{{url}}/todos/59fe25607871cd42b4830484",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH /todos/:id",
+			"request": {
+				"url": "{{url}}/todos/59fe1f092c64e70012f0b38c",
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"completed\": true,\n\t\"text\": \"second test todo updated\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create /user",
+			"request": {
+				"url": "{{url}}/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"codejayant@gmail.com\",\n\t\"password\": \"hello12345\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Login /users/login",
+			"request": {
+				"url": "{{url}}/users/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"codejayant124@gmail.com\",\n\t\"password\": \"hello123\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /users/me",
+			"request": {
+				"url": "{{url}}/users/me",
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTE5OGY0ZDRhNDBiMDdlNTZmN2U2ZWMiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTExNjI0NTI1fQ.4jldRRYYuKJdvKODx_HgVW-8OMp-JFYcEbJ8oy5MC2I",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Logout /users/me/token",
+			"request": {
+				"url": "{{url}}/users/me/token",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTE5OGY0ZDRhNDBiMDdlNTZmN2U2ZWMiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTExNjQ4Nzk5fQ.f76fk8qOFltygZlA7yJl2dJVMdzXFVCxlIB0x8oSHq4",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
